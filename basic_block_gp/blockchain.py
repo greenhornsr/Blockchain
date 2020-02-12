@@ -64,8 +64,16 @@ class Blockchain(object):
         # or we'll have inconsistent hashes
 
         # TODO: Create the block_string
+        # json.dumps stringifies the json object, in this case block; and sort_keys = True keeps the keys in the same order so when we hash the object, it is deterministic (always the same)
+        string_object = json.dumps(block, sort_keys=True)
+        # python strings are not really strings, they are still objects and have metadata.  So while we did the json.dumps above, we still need to further stringify it.
+        block_string = string_object.encode()
 
         # TODO: Hash this string using sha256
+        # hashes the fully stringified block
+        raw_hash = hashlib.sha256(block_string) 
+        # use built-in hex_digest to get the hex_hash
+        hex_hash = raw_hash.hexdigest()
 
         # By itself, the sha256 function returns the hash in a raw string
         # that will likely include escaped characters.
@@ -74,7 +82,7 @@ class Blockchain(object):
         # easier to work with and understand
 
         # TODO: Return the hashed block string in hexadecimal format
-        pass
+        return hex_hash
 
     @property
     def last_block(self):
@@ -117,6 +125,8 @@ node_identifier = str(uuid4()).replace('-', '')
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
+print(blockchain.chain)
+print(blockchain.hash(blockchain.last_block))
 
 
 @app.route('/mine', methods=['GET'])
