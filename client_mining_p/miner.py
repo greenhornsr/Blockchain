@@ -62,12 +62,15 @@ if __name__ == '__main__':
             break
 
         # TODO: Get the block from `data` and use it to look for a new proof
-        # new_proof = ???
+        new_block = data['last_block']
+        new_proof = proof_of_work(new_block)
+        print("proof found: ", new_proof)
 
         # When found, POST it to the server {"proof": new_proof, "id": id}
         post_data = {"proof": new_proof, "id": id}
 
         r = requests.post(url=node + "/mine", json=post_data)
+        # TODO: catch non json response using method above.
         data = r.json()
 
         # TODO: If the server responds with a 'message' 'New Block Forged'
