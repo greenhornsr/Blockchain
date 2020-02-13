@@ -1,5 +1,8 @@
 .App {
+  max-width: 80vw;
+  margin: 0 auto;
   text-align: center;
+  border: 3px solid black;
 }
 
 .App-logo {
