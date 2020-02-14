@@ -3,7 +3,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 
 // Importing components
-import Blockchain_Container from './components/Blockchain_Container';
+import Blockchain_Container from './components/chain/Blockchain_Container';
 
 function App() {
   return (

@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 // importing component(s)
-import BcChainList from './BcChainList';
+import BcChainList from './BcChainList'
 
 // styling
-import './component.css'
+import './chain.css'
 
 const Blockchain_Container = () => {
     const [bcdata, setBcdata] = useState()
