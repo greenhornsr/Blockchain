@@ -1,11 +1,11 @@
 .App {
   max-width: 80vw;
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
   border: 3px solid black;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -38,4 +38,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
