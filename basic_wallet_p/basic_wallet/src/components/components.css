@@ -13,3 +13,8 @@
     margin-left: 7rem;
     /* border: 1px solid red; */
 }
+
+.lastblock-container{
+    padding: 1rem;
+    border: 1px solid red;
+}

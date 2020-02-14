@@ -10,13 +10,13 @@ const Home = () => {
             <h2>Site Map:</h2>
             <section className="sec-methods">
                 <h3>METHOD: "GET"</h3>
-                    <p>👁 "/chain/": to see the chain. </p>
-                    <p>👁 "/last_block/": to see the last block. </p>
+                    <p><span role="img" aria-label="eye" >👁 </span>"/chain/": to see the chain. </p>
+                    <p><span role="img" aria-label="eye" >👁 </span> "/last_block/": to see the last block. </p>
             </section>
             <section className="sec-methods">
                 <h3>METHOD: "POST"</h3>
-                <p>📩 "/mine/": to mine new blocks.</p>
-                <p>📩 "/transactions/new": to make a transaction.</p>
+                <p><span role="img" aria-label="sent-message" >📩 </span>"/mine/": to mine new blocks.</p>
+                <p><span role="img" aria-label="sent-message" >📩 </span>"/transactions/new": to make a transaction.</p>
             </section>
         </div>
     )
