@@ -1,6 +1,7 @@
-/* .bc-container {
-    border: 1px solid red;
-} */
+.bc-container {
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
 
 .bc-container h1{
     text-align: center;
@@ -9,12 +10,20 @@
 .test-flex {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid green;
+    justify-content: space-evenly;
+    /* border: 1px solid green; */
 }
 
 .block-disp {
-    margin: 0 auto;
+    /* margin-top: 1rem; */
+    margin-bottom: 1.7rem;
+    padding: 1rem;
     width: 15vw;
     overflow: hidden;
-    border: 1px solid red;
+    background-color: gold;
+    border: 1px solid black;
+}
+
+.sec-trans {
+    padding-left: 1.5rem;
 }
