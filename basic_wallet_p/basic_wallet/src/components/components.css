@@ -1,0 +1,15 @@
+.home-contain {
+    padding: 2rem;
+    background-color: lightskyblue;
+}
+
+.h1-centers {
+    text-align: center;
+}
+
+.sec-methods {
+    width: 20rem;
+    margin-bottom: 2rem;
+    margin-left: 7rem;
+    /* border: 1px solid red; */
+}

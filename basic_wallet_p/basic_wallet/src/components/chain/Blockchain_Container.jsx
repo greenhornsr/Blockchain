@@ -30,10 +30,10 @@ const Blockchain_Container = () => {
     return (
         <div className="bc-container" >
             {!bcdata ? (
-            <h1>Loading...</h1>
+            <h1 className="h1-centers" >Loading...</h1>
             ) : (
             <div>
-                <h1>Home Sweet Home</h1>
+                <h1 className="h1-centers" >Home Sweet Home</h1>
                 <BcChainList blocks={bcdata} />
             </div>
             )}
