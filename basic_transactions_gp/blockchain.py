@@ -143,7 +143,51 @@ blockchain = Blockchain()
 print(blockchain.chain)
 print(blockchain.hash(blockchain.last_block))
 
-@app.route('/transactions/new', methods=['Post'])
+# change user id
+@app.route('/user/', methods=['POST'])
+def add_user():
+    data = request.get_json()
+    # breakpoint()
+    required = ['user',]
+    print("mY TESt: ....", data, required)
+    if not all(k in data for k in required):
+        #TODO: error handling for wrong data
+        return "must send a user", 400
+
+    user = data['user']
+    # breakpoint()
+    # Load user ID
+    l = open("../client_mining_p/my_id.txt", "r")
+    # traverse through users in file and compare to user
+    # if str(user).encode() in l.readlines():
+    if user in l.readlines():
+        print("********!user found!: ***********\n\n", user)
+        # compare request user to users in my_id.txt file
+        print("ID is", user)
+        response = {
+            "user": f"found user, {user}"
+        }
+        l.close()
+        return jsonify(response), 200
+    else: 
+        l = open("../client_mining_p/my_id.txt", "a")
+        # save the user
+        l.write("\n" + str(user))
+        l.close()
+        response = {
+        "success": "USER ADDED!  SUCCESS!"
+    }
+    return jsonify(response), 200
+
+    # # Save NEW user ID
+    # f = open("../client_mining_p/my_id.txt", "a")
+    # f.write("\n" + str(user))
+    # f.close()
+    
+
+
+# add a transaction
+@app.route('/transactions/new/', methods=['POST'])
 def receive_new_transaction():
     """
     * use `request.get_json()` to pull the data out of the POST
