@@ -68,7 +68,7 @@ class Blockchain(object):
         self.current_transactions.append({
             "sender": sender, 
             "recipient": recipient,
-            "amound": amount
+            "amount": amount
         })
         return self.last_block['index'] + 1
 
