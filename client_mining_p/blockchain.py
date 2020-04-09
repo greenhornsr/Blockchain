@@ -64,6 +64,14 @@ class Blockchain(object):
         # Return the new block
         return block
 
+    def new_transaction(self, sender, recipient, amount):
+        self.current_transactions.append({
+            "sender": sender, 
+            "recipient": recipient,
+            "amound": amount
+        })
+        return self.last_block['index'] + 1
+
     # this custom hash method is done to provide a hexdigest/readable version within the new block
     def hash(self, block):
         """
@@ -170,10 +178,13 @@ def mine():
         response = {"ALERT":  "Request must contain 'proof' and 'id'."}
         return jsonify(response), 400
 
+    # Determine if the proof is valid
     last_block = blockchain.last_block
     last_block_string = json.dumps(last_block, indent=4, sort_keys=True)
 
     if blockchain.valid_proof(last_block_string, proof):
+        blockchain.new_transaction(sender="0", recipient=data["id"].strip(), amount=1)
+
         # Forge the new Block by adding it to the chain with the proof
         previous_hash = blockchain.hash(blockchain.last_block)
         block = blockchain.new_block(proof, previous_hash)
@@ -207,9 +218,27 @@ def last_block_route():
         "last_block": blockchain.last_block
     }
     return jsonify(response), 200
-    
+
+@app.route('/transactions/new', methods=['POST'])
+def new_transaction():
+    values = request.get_json()
+
+    required = ['sender', 'recipient', 'amount']
+    if not all(k in values for k in required):
+        return 'Missing Values', 400
+
+    index = blockchain.new_transaction(values["sender"],
+                                        values["recipient"],
+                                        values["amount"])
+
+    response = {'message': f"Transaction will be added to Block {index}"}
+    return jsonify(response), 200
 
 
 # Run the program on port 5000
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
+# Curl command to test endpoints via cli.
+# cli command: curl -X POST -H "Content-Type: application/json" -d '{"sender":"Br80", "recipient": "Brian", "amount": 1}' localhost:5000/transactions/new
+
